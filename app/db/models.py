@@ -1,13 +1,17 @@
-from sqlalchemy import Column, Integer, String
-from . import Base
+from typing import Optional
+from sqlmodel import Field, SQLModel
 
 
-class Student(Base):
-    __tablename__ = "student"
+class Student(SQLModel, table=True):
+    id: Optional[int] = Field(primary_key=True, default=None, index=True)
+    first_name: str
+    last_name: str
+    phone_number: int
+    nationality: str
+    gender: str
 
-    id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String(50))
-    last_name = Column(String(50))
-    phone_number = Column(Integer)
-    nationality = Column(String)
-    gender = Column(String)
+
+class ClassModel(SQLModel, table=True):
+    id: Optional[int] = Field(primary_key=True, default=None, index=True)
+    name: str
+    semester: int

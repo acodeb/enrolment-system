@@ -25,14 +25,14 @@
 
 Create a good set of REST APIs that can fulfill the following requirements:
 
-- Add a new student
+[X] Add a new student
   - Store only the following information about a student
     - Phone Number
     - First Name
     - Last Name
     - Nationality
     - Gender
-- Modify a student
+[X] Modify a student
 - Create a new semester
 - Enroll a student into a class for a particular semester
 - Get the list of classes for a particular student for a semester
