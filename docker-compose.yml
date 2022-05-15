@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+    container_name: enroll-db
+    image: postgres:latest
+    environment:
+      bind-address: 0.0.0.0
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+  api:
+    build: ./
+    image: enroll-app
+    ports:
+      - 8000:8000
+    networks:
+      - app-network
+    depends_on:
+      - db
+
+networks:
+  app-network:
+    driver: bridge

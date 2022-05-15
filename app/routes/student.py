@@ -8,7 +8,7 @@ from typing import List
 router = APIRouter(prefix="/student")
 
 
-@router.post("/student", response_model=Student)
+@router.post("/", response_model=Student)
 def post(student: Student):
     with Session(engine) as session:
         db_student = Student.from_orm(student)
@@ -18,13 +18,13 @@ def post(student: Student):
         return db_student
 
 
-@router.get("/student", response_model=List[Student])
+@router.get("/", response_model=List[Student])
 def list():
     with Session(engine) as session:
         return session.exec(select(Student)).all()
 
 
-@router.get("/student/{id}", response_model=Student)
+@router.get("/{id}", response_model=Student)
 def get(id: int):
     with Session(engine) as session:
         student = session.get(Student, id)
@@ -33,7 +33,7 @@ def get(id: int):
         return student
 
 
-@router.put("/student", response_model=Student)
+@router.put("/", response_model=Student)
 def update(student: Student):
     with Session(engine) as session:
         db_student = session.get(Student, student.id)
